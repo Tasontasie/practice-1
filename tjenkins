@@ -12,6 +12,7 @@
  stage('2Test&Build'){
     sh "${mavenHome}/bin/mvn package"
  } 
+
  stage('3CodeQuality'){sh "${mavenHome}/bin/mvn sonar:sonar"}
  stage('4UploadArtifacts'){
     sh "${mavenHome}/bin/mvn deploy"
@@ -22,4 +23,5 @@
  stage('email notification'){emailext body: 'done', subject: 'build', to: 'tasontasie@gmail.com'}
  stage('6deploy_prod'){}
  stage('7Notification'){}
+ 
 } 
